@@ -5,24 +5,26 @@ import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-            
+const [todoList, setTodoList] =React.useState("")
 
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+
+	return (
+		<div className="container text-center">
+			<h2>TO-DO List</h2>
+			<input type="text" placeholder="Enter something here ..."
+			 onChange={(e) => setTodoList(e.target.value)}
+			 value={todoList}/>
+			<button className="add">Add to your list</button>
+			<div>
+				<ul className="lists">
+					<li>{item}</li>
+					<li>Study</li>
+					<li>Class</li>
+				</ul>
+			</div>
 		</div>
+		
 	);
-};
+};                  
 
 export default Home;
