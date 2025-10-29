@@ -46,7 +46,8 @@ h3{
     border: none;
     border-radius: 8%;
     margin-left: 20px;
-    margin-top:8px
+    margin-top:8px;
+    background:#FF0000;
 
 }
 input[type="checkbox"]:checked + label {

@@ -5,8 +5,9 @@ import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
 const Home = () => {
-const [tasks, setTasks] =React.useState(["Run 3 miles", "Shower", "Study"])
+const [tasks, setTasks] =React.useState([{label:"Run 3 miles",isDone:false},{label:"Shower", isDone:false},{label:"Study",isDone:false}])
 const[userInput, setUserInput]=React.useState("")
+
 
 const newTask=()=>{
 	if(userInput ===""){
@@ -28,10 +29,17 @@ const enterKey=(event)=>{
 }
 
 const Remove=(index)=>{
-	setTasks(tasks.filter((task,i) => i!== index))
+	setTasks(tasks.filter((task, i) => i!== index))
 }
-const defaultChecked=()=>{
-
+const toggleCheckmark=(i)=>{
+	let updatedTask= tasks.filter((task, index)=>{
+		if (index ===i){
+			return {...tasks, isDone:!task.isDone}  
+		}else{
+			return tasks
+		}
+	})
+	setTasks(updatedTask)
 }
 
 	return (
@@ -46,10 +54,10 @@ const defaultChecked=()=>{
 			</div>
 			<div>
 				<ul className="lists">
-					{tasks.map((task, index) =>
+					{tasks?.map((task, index) =>
 						<li key={index}>
-							<input className="checked" type="checkbox" defaultChecked={defaultChecked}/>
-							<label>{task}</label>
+							<input className="checked" type="checkbox" onChange={ ()=>toggleCheckmark(index)} checked={tasks.isDone} />
+							<label>{task.label}</label>
 							<button className="remove" onClick={()=>Remove(index)}>🗑️</button>	
 						</li>
 					)}
